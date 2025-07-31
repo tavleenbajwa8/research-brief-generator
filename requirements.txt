@@ -1,0 +1,44 @@
+# Core dependencies
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+
+# LangChain and LangGraph
+langchain
+langchain-openai
+langchain-google-genai
+langgraph
+
+# Web scraping and search
+ddgs
+beautifulsoup4
+aiohttp
+lxml
+
+# Database
+sqlalchemy
+psycopg2-binary
+
+# CLI and utilities
+click
+rich
+python-dotenv
+
+# Error handling and retries
+tenacity
+
+# Logging
+structlog
+
+# Testing
+pytest
+pytest-asyncio
+pytest-cov
+httpx
+
+# Development tools
+black
+isort
+flake8
+mypy 

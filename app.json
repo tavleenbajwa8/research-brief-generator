@@ -1,0 +1,42 @@
+{
+  "name": "Research Brief Generator",
+  "description": "Context-aware research brief generator using LangGraph and LangChain",
+  "repository": "https://github.com/yourusername/research-brief-generator",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["python", "fastapi", "langchain", "langgraph", "ai", "research"],
+  "env": {
+    "OPENAI_API_KEY": {
+      "description": "Your OpenAI API key",
+      "required": true
+    },
+    "GOOGLE_API_KEY": {
+      "description": "Your Google API key (optional)",
+      "required": false
+    },
+    "LANGSMITH_API_KEY": {
+      "description": "Your LangSmith API key (optional)",
+      "required": false
+    },
+    "LANGSMITH_PROJECT": {
+      "description": "LangSmith project name",
+      "value": "research-brief-generator",
+      "required": false
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:mini"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+} 
