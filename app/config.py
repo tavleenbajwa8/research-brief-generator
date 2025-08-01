@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
     
     # API Keys
-    openai_api_key: str = Field(..., env="OPENAI_API_KEY")
+    openai_api_key: Optional[str] = Field(None, env="OPENAI_API_KEY")
     google_api_key: Optional[str] = Field(None, env="GOOGLE_API_KEY")
     
     # LangSmith Configuration

@@ -19,12 +19,29 @@ def main():
     print(f"Port: {port}")
     print(f"Environment: {os.environ.get('RAILWAY_ENVIRONMENT', 'local')}")
     
+    # Debug environment variables
+    print("=== Environment Variables Debug ===")
+    openai_key = os.environ.get("OPENAI_API_KEY")
+    google_key = os.environ.get("GOOGLE_API_KEY")
+    print(f"OPENAI_API_KEY present: {openai_key is not None}")
+    print(f"GOOGLE_API_KEY present: {google_key is not None}")
+    if openai_key:
+        print(f"OPENAI_API_KEY length: {len(openai_key)}")
+    if google_key:
+        print(f"GOOGLE_API_KEY length: {len(google_key)}")
+    
+    # List all environment variables that contain "API"
+    api_vars = {k: v[:10] + "..." if v and len(v) > 10 else v for k, v in os.environ.items() if "API" in k.upper()}
+    print(f"All API-related env vars: {api_vars}")
+    
     # Check if app can be imported
     try:
         from app.main import app
         print("✅ App imported successfully")
     except Exception as e:
         print(f"❌ Failed to import app: {e}")
+        import traceback
+        traceback.print_exc()
         sys.exit(1)
     
     # Start the server
