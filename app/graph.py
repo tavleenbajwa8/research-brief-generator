@@ -10,7 +10,7 @@ from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import MemorySaver
 
 from app.schemas import GraphState, ContextSummary, ResearchPlan, SourceSummary, FinalBrief
-from app.llm_simple import get_simple_get_simple_llm_manager()
+from app.llm_simple import get_simple_llm_manager
 from app.tools import research_search_tool
 from app.database import db_manager
 

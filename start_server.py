@@ -46,6 +46,15 @@ def main():
     print(f"Alternative OpenAI key present: {alt_openai is not None}")
     print(f"Alternative Google key present: {alt_google is not None}")
     
+    # TEMPORARY: Set dummy API keys for Railway deployment testing
+    if not openai_key:
+        print("⚠️  Setting dummy OpenAI API key for testing")
+        os.environ["OPENAI_API_KEY"] = "sk-dummy-key-for-testing"
+    
+    if not google_key:
+        print("⚠️  Setting dummy Google API key for testing") 
+        os.environ["GOOGLE_API_KEY"] = "dummy-google-key-for-testing"
+    
     # Check if app can be imported
     try:
         from app.main import app
