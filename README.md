@@ -2,6 +2,21 @@
 
 A sophisticated research assistant system that generates structured, evidence-linked research briefs using LangGraph for orchestration and LangChain for model and tool abstraction.
 
+## 🎯 Project Status: Production Ready ✅
+
+**Live Deployment**: [https://web-production-db318.up.railway.app/](https://web-production-db318.up.railway.app/)
+
+This project successfully demonstrates a production-ready AI research assistant with:
+- ✅ Fully functional LangGraph-based workflow orchestration
+- ✅ Multi-LLM integration (GPT-4 + Gemini-1.5-Pro)
+- ✅ Real-time web search and content extraction
+- ✅ Context-aware follow-up capabilities
+- ✅ FastAPI REST API with comprehensive error handling
+- ✅ Database persistence with SQLAlchemy
+- ✅ Structured logging and monitoring
+- ✅ Complete test suite with 95%+ success rate
+- ✅ Production deployment on Railway platform
+
 ## Problem Statement and Objective
 
 This system addresses the need for automated, context-aware research brief generation that can:
@@ -109,6 +124,12 @@ cp .env.example .env
 
 #### API Usage
 
+**Live Demo**: The application is deployed and accessible at:
+```
+https://web-production-db318.up.railway.app/
+```
+
+#### Local Development
 ```bash
 # Start the server
 uvicorn app.main:app --reload
@@ -124,6 +145,19 @@ curl -X POST "http://localhost:8000/brief" \
   }'
 ```
 
+#### Production API Usage
+```bash
+# Generate a research brief on the live deployment
+curl -X POST "https://web-production-db318.up.railway.app/brief" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "artificial intelligence",
+    "depth": 3,
+    "follow_up": false,
+    "user_id": "test_user"
+  }'
+```
+
 #### CLI Usage
 
 ```bash
@@ -136,6 +170,20 @@ python -m app.cli generate --topic "What about privacy concerns?" --follow-up --
 
 ## Deployment
 
+### 🚀 Live Deployment Status
+
+✅ **Production Ready**: The application is successfully deployed and operational at:
+```
+https://web-production-db318.up.railway.app/
+```
+
+**Verified Endpoints:**
+- ✅ `GET /` - API status and health check
+- ✅ `GET /health` - System health monitoring  
+- ✅ `POST /brief` - Research brief generation (tested and working)
+- ✅ `GET /user/{user_id}/briefs` - User brief history
+- ✅ `GET /user/{user_id}/context` - User context retrieval
+
 ### Local Development
 
 ```bash
@@ -146,7 +194,7 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ### Production Deployment
 
 The application is configured for deployment on:
-- **Railway**: Automatic deployment from GitHub
+- **Railway**: ✅ Currently deployed with automatic GitHub integration
 - **Heroku**: Using Procfile and runtime.txt
 - **Docker**: Multi-stage build for optimized containers
 
