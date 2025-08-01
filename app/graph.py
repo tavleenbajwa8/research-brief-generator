@@ -10,7 +10,7 @@ from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import MemorySaver
 
 from app.schemas import GraphState, ContextSummary, ResearchPlan, SourceSummary, FinalBrief
-from app.llm_simple import simple_llm_manager as llm_manager
+from app.llm_simple import get_simple_get_simple_llm_manager()
 from app.tools import research_search_tool
 from app.database import db_manager
 
@@ -63,7 +63,7 @@ class ResearchBriefGraph:
                 previous_briefs = db_manager.get_user_briefs(state.user_id, limit=5)
                 
                 # Generate context summary
-                context_summary = await llm_manager.summarize_context(
+                context_summary = await get_simple_llm_manager().summarize_context(
                     user_id=state.user_id,
                     previous_briefs=previous_briefs,
                     current_topic=state.topic,
@@ -94,7 +94,7 @@ class ResearchBriefGraph:
         
         try:
             # Generate research plan
-            research_plan = await llm_manager.generate_research_plan(
+            research_plan = await get_simple_llm_manager().generate_research_plan(
                 topic=state.topic,
                 depth=state.depth,
                 context_summary=state.context_summary,
@@ -187,7 +187,7 @@ class ResearchBriefGraph:
                     source_content = search_result.get("snippet", "")
                 
                 try:
-                    source_summary = await llm_manager.summarize_source(
+                    source_summary = await get_simple_llm_manager().summarize_source(
                         source_content=source_content,
                         source_url=search_result.get("url", ""),
                         topic=state.topic,
@@ -245,7 +245,7 @@ class ResearchBriefGraph:
                 )
             
             # Generate final brief
-            final_brief = await llm_manager.synthesize_brief(
+            final_brief = await get_simple_llm_manager().synthesize_brief(
                 topic=state.topic,
                 source_summaries=state.source_summaries,
                 research_plan=state.research_plan,

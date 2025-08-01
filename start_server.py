@@ -9,7 +9,7 @@ import sys
 import uvicorn
 
 def main():
-    print("=== Starting Research Brief Generator ===")
+    print("=== Starting Research Brief Generator v2 ===")
     
     # Get port from environment variable, default to 8000
     port = int(os.environ.get("PORT", 8000))
@@ -33,6 +33,18 @@ def main():
     # List all environment variables that contain "API"
     api_vars = {k: v[:10] + "..." if v and len(v) > 10 else v for k, v in os.environ.items() if "API" in k.upper()}
     print(f"All API-related env vars: {api_vars}")
+    
+    # List ALL environment variables to debug
+    print("=== ALL Environment Variables ===")
+    all_vars = list(os.environ.keys())
+    print(f"Total env vars: {len(all_vars)}")
+    print(f"Sample vars: {all_vars[:10]}")
+    
+    # Check for alternative variable names
+    alt_openai = os.environ.get("OPENAI_KEY") or os.environ.get("OPENAIKEY") or os.environ.get("OPENAI")
+    alt_google = os.environ.get("GOOGLE_KEY") or os.environ.get("GOOGLEKEY") or os.environ.get("GOOGLE")
+    print(f"Alternative OpenAI key present: {alt_openai is not None}")
+    print(f"Alternative Google key present: {alt_google is not None}")
     
     # Check if app can be imported
     try:

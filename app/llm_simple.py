@@ -340,5 +340,12 @@ Provide a detailed, informative research brief that offers real value and insigh
             )
 
 
-# Global simplified LLM manager instance
-simple_llm_manager = SimpleLLMManager() 
+# Global simplified LLM manager instance (lazy initialization)
+simple_llm_manager = None
+
+def get_simple_llm_manager():
+    """Get the global SimpleLLMManager instance, creating it if needed."""
+    global simple_llm_manager
+    if simple_llm_manager is None:
+        simple_llm_manager = SimpleLLMManager()
+    return simple_llm_manager 
